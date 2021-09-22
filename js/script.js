@@ -18,12 +18,10 @@ const showCard = card => {
 
     let id = toggleSpace(card.number)
     clone.setAttribute('id', id)
-    //
+
     clone.querySelector('.card-number').textContent = card.number
     clone.querySelector('.card-date').textContent = card.date
     clone.querySelector('.card-holder').textContent = card.holder
-    clone.querySelector('#delete').dataset.id = id
-    clone.querySelector('#edit').dataset.id = id
 }
 
 const toggleSpace = cardNumber => {
