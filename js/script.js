@@ -9,6 +9,7 @@ console.log(cards)
 const plastiks = document.querySelector('.cards')
 const plastik = plastiks.querySelector('.plastik')
 let form = document.querySelector('form')
+let editingCard = null
 
 
 const showCard = card => {
@@ -23,6 +24,7 @@ const showCard = card => {
     clone.querySelector('.card-date').textContent = card.date
     clone.querySelector('.card-holder').textContent = card.holder
     clone.querySelector('#delete').dataset.id = id
+    clone.querySelector('#edit').dataset.id = id
 }
 
 const toggleSpace = cardNumber => {
@@ -37,7 +39,10 @@ const toggleSpace = cardNumber => {
 const validate = cardNumber => {
     let hasCard = cards.find(card => card.number === cardNumber)
 
-    if (hasCard) {
+
+    if (hasCard && hasCard.number === editingCard.number) {
+        return false
+    } else if (hasCard) {
         alert(`Card ${form.number.value} is already added!`)
         form.number.classList.add('is-danger')
         form.number.focus()
@@ -46,6 +51,15 @@ const validate = cardNumber => {
     }
 
     return false
+}
+const editCard = cardNumber => {
+    let card = cards.find(card => toggleSpace(card.number) === cardNumber)
+    form.number.value = card.number
+    form.date.value = card.date
+    form.holder.value = card.holder
+    form.querySelector('button').textContent = 'Update'
+
+    editingCard = card
 }
 
 const deleteCard = cardNumber => {
@@ -64,7 +78,35 @@ form.addEventListener('submit', event => {
 
     let hasCard = validate(form.number.value)
 
-    if (!hasCard) {
+    if (!hasCard && editingCard) {
+        // Updating card
+        let thisCard = document.getElementById(toggleSpace(editingCard.number))
+
+        cards = cards.map(card => {
+            if (editingCard.number === card.number) {
+                card.number = form.number.value
+                card.date = form.date.value
+                card.holder = form.holder.value
+            }
+
+            return card
+        })
+
+        thisCard.setAttribute('id', toggleSpace(form.number.value))
+        thisCard.querySelector('.card-number').textContent = form.number.value
+        thisCard.querySelector('.card-date').textContent = form.date.value
+        thisCard.querySelector('.card-holder').textContent = form.holder.value
+
+        thisCard.querySelector('#delete').dataset.id = toggleSpace(form.number.value)
+        thisCard.querySelector('#edit').dataset.id = toggleSpace(form.number.value)
+
+        form.reset()
+        form.querySelector('button').textContent = 'Add'
+        form.number.classList.remove('is-danger')
+
+        editingCard = null
+        console.log(cards)
+    } else if (!hasCard) {
         // Adding Card
         let card = {
             number: form.number.value,
@@ -73,16 +115,14 @@ form.addEventListener('submit', event => {
         }
 
         cards.push(card)
+        console.log(cards)
+
         showCard(card)
 
         form.reset()
         form.number.classList.remove('is-danger')
     }
-    console.log(cards)
 
 })
-
-
 IMask(form.number, {mask: '0000 0000 0000 0000'})
 IMask(form.date, {mask: '00/00'})
-
