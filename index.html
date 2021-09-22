@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="container mt-4">
+    <div class="columns">
+        <div class="column is-4">
+            <div class="box">
+                <form>
+                    <div class="field">
+                        <label class="label">Card number</label>
+                        <div class="control">
+                            <input class="input" required name="number" id="number" type="text"
+                                   placeholder="0000 0000 0000 0000">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Exp. Date</label>
+                        <div class="control">
+                            <input class="input" name="date" id="date" type="text" placeholder="10/30">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Holder</label>
+                        <div class="control">
+                            <input class="input" name="holder" id="holder" type="text" placeholder="Elon Musk">
+                        </div>
+                    </div>
+
+                    <button class="button is-primary is-fullwidth">Add</button>
+                </form>
+            </div>
+        </div>
+        <div class="column">
+            <div class="columns is-multiline cards">
+                <div class="column is-6 plastik is-hidden">
+                    <div class="credit-card selectable">
+                        <div class="credit-card-last4 card-number">
+                            0005
+                        </div>
+                        <div class="credit-card-expiry card-date">
+                            03/25
+                        </div>
+                        <div class="credit-card-holder card-holder">
+                            Maruf Tairov
+                        </div>
+                    </div>
+
+                    <button class="button is-danger" id="delete">Delete</button>
+                    <button class="button is-link" id="edit">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/imask.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
