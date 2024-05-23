@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bulma.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content box">
+            <div class="content"></div>
+            <div class="buttons is-centered">
+                <button class="button is-success"></button>
+            </div>
+        </div>
+        <div class="modal-close is-large"></div>
+    </div>
+    <div class="container mt-4">
+        <div class="columns">
+            <div class="column is-4">
+                <div class="box">
+                    <form>
+                        <div class="field">
+                            <label class="label">Card number</label>
+                            <div class="control">
+                                <input class="input" required name="number" id="number" type="text"
+                                    placeholder="0000 0000 0000 0000">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Expiration Date</label>
+                            <div class="control">
+                                <input class="input" name="date" id="date" type="text" placeholder="09/28">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Holder</label>
+                            <div class="control">
+                                <input class="input" name="holder" id="holder" type="text" placeholder="Elon Musk">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Phone number</label>
+                            <div class="control">
+                                <input class="input" name="phone" id="phone" type="text" placeholder="+7(999)1234567">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Secirity code</label>
+                            <div class="control">
+                                <input class="input" name="password" id="password" type="password" placeholder="****">
+                            </div>
+                        </div>
+                        <button type="submit" class="button is-primary is-fullwidth">Add</button>
+                        <button type="button" class="button is-danger is-fullwidth my-4 is-hidden">
+                            Cancel
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="column">
+                <div class="has-text-right">
+                    <div class="title is-4">
+                        Карт: <span class="counter">0</span>
+                    </div>
+                </div>
+                <div class="columns is-multiline cards">
+                    <div class="column is-6 plastik is-hidden">
+                        <div class="scene scene--card">
+                            <div class="credit-card">
+                                <div class="card__face card__face--front">
+                                    <div class="credit-card-element">
+                                        <div class="active-text has-text-grey-dark has-text-right">
+                                            Активирована
+                                        </div>
+                                        <div class="card-number">
+                                            1111 1111 1111 1111
+                                        </div>
+                                        <div class="card-date has-text-right">
+                                            03/25
+                                        </div>
+                                        <div class="card-holder subtitle is-uppercase">
+                                            John Doe
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card__face card__face--back">
+                                    <div class="credit-card-element">
+                                        <div class="line"></div>
+
+                                        <div class="flex">
+                                            <div class="signature">
+                                                Место для подписи
+                                            </div>
+                                            <div class="cvv">***</div>
+                                            <button onclick="toggleCVV(this.dataset.id)"
+                                                class="button is-small is-dark show-cvv">
+                                                Показать
+                                            </button>
+                                        </div>
+                                        <div class="bank-data">
+                                            Lorem ipsum dolor, sit amet consectetur
+                                            adipisicing elit. Animi, ipsum!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown" onclick="this.classList.toggle('is-active')">
+                            <div class="dropdown-trigger">
+                                <button class="button is-info">Операции с картой</button>
+                            </div>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-item is-clickable" href=""
+                                        onclick="deleteCard(this.dataset.id)" id="delete">
+                                        Удалить
+                                    </div>
+                                    <div class="dropdown-item is-clickable" href="" onclick="editCard(this.dataset.id)"
+                                        id="edit">
+                                        Отредактировать
+                                    </div>
+                                    <div class="dropdown-item is-clickable" onclick="resetPassword(this.dataset.id)"
+                                        id="reset">
+                                        Установить новый пароль
+                                    </div>
+                                    <div class="dropdown-item is-clickable"
+                                        onclick="toggleActive(this.dataset.id, this.dataset.action)" id="activate">
+                                        Активировать карту
+                                    </div>
+                                    <div class="dropdown-item is-clickable flip"
+                                        onclick="flip(this.dataset.id, this.dataset.side)">
+                                        Перевернуть карту
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="imask.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
